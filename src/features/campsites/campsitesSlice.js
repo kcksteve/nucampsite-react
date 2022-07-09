@@ -13,7 +13,7 @@ export const fetchCampsites = createAsyncThunk(
         const data = await response.json();
         return data;
     }
-)
+);
 
 const initialState = {
     campsitesArray: [],
@@ -54,5 +54,9 @@ export const selectCampsiteById = (id) => (state) => {
 };
 
 export const selectFeaturedCampsite = (state) => {
-    return state.campsites.campsitesArray.find((campsite) => campsite.featured);
+    return {
+        featuredItem: state.campsites.campsitesArray.find((campsite) => campsite.featured),
+        isLoading: state.campsites.isLoading,
+        errMsg: state.campsites.errMsg
+    }
 };
